@@ -1,0 +1,114 @@
+import React, {useState} from "react";
+import { Box, ButtonBase, Drawer, List, Toolbar, ListItemText, Typography } from "@mui/material"; 
+import LazyTable from "../components/LazyTable";
+import config from "../config";
+
+const drawElements = [
+    {
+        id: 1,
+        text: 'Job Opportunities',
+        description: 'Cities with emerging job opportunities',
+        route: `http://${config.server_host}:${config.server_port}/insight_job_opps`,
+        columns: [
+            {
+                field: 'City',
+                headerName: 'City',
+                renderCell: (row) => <div>{row.City}</div>
+            },
+            {
+                field: 'State',
+                headerName: 'State',
+                renderCell: (row) => <div>{row.State}</div>
+            },
+            {
+                field: 'EmpGrowth',
+                headerName: 'Employment Growth',
+                renderCell: (row) => <div>{row.EmpGrowth}</div>
+            }
+        ]
+    },
+    {
+        id: 2,
+        text: 'Diversity',
+        description: 'Top locations with a diverse job market and diverse demographics that have Airbnb availability.',
+        route: `http://${config.server_host}:${config.server_port}/insight_diversity`,
+        columns: [
+            {
+                field: 'County',
+                headerName: 'County',
+                renderCell: (row) => <div>{row.County}</div>
+            },
+            {
+                field: 'State',
+                headerName: 'State',
+                renderCell: (row) => <div>{row.State}</div>
+            },
+            {
+                field: 'TotalScore',
+                headerName: 'Diversity Score',
+                renderCell: (row) => <div>{row.TotalScore}</div>
+            }
+        ]
+    },
+    {
+        id: 3,
+        text: 'Insight 3',
+        description: 'Description of Insight 3',
+
+    },
+    {
+        id: 4,
+        text: 'Insight 4',
+        description: 'Description of Insight 4',
+    },
+    {
+        id: 5,
+        text: 'Insight 5',
+        description: 'Description of Insight 5',
+    },
+    {
+        id: 6,
+        text: 'Insight 6',
+        description: 'Description of Insight 6',
+    },
+    {
+        id: 7,
+        text: 'Insight 7',
+        description: 'Description of Insight 7',
+    }
+];
+
+
+export default function InsightsPage() {
+    const [selectedInsight, setSelectedInsight] = useState(drawElements[0]);
+
+    return (
+        <Box sx={{ display: 'flex', zIndex: 1 }}>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    width: 240,
+                    flexShrink: 0,
+                    alignContent: 'center',
+                    display: { xs: 'none', sm: 'block' },
+                    [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', top: 80 },
+                }}
+            >
+                <Toolbar/>
+                <List>
+                    {drawElements.map((element) => (
+                        <ButtonBase key={element.id} 
+                            onClick={() => setSelectedInsight(element)}
+                            sx={{ width: 240 }}>
+                            <ListItemText primary={element.text} />
+                        </ButtonBase>
+                    ))}
+                </List>
+            </Drawer>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                <LazyTable route = {selectedInsight.route} columns={selectedInsight.columns} defaultPageSize={5} rowsPerPageOptions={[5, 10, 25]} />
+            </Box>
+        </Box>
+    );
+}
+

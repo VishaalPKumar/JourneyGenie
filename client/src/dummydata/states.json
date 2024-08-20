@@ -1,0 +1,34 @@
+{
+    "states": [
+        {
+            "name": "Alabama",
+            "capital": "Montgomery",
+            "population": 4903185,
+            "area": 135767
+        },
+        {
+            "name": "Alaska",
+            "capital": "Juneau",
+            "population": 731545,
+            "area": 1723337
+        },
+        {
+            "name": "Arizona",
+            "capital": "Phoenix",
+            "population": 7278717,
+            "area": 295234
+        },
+        {
+            "name": "Arkansas",
+            "capital": "Little Rock",
+            "population": 3017804,
+            "area": 137732
+        },
+        {
+            "name": "California",
+            "capital": "Sacramento",
+            "population": 39538223,
+            "area": 423967
+        }
+    ]
+}

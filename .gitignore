@@ -1,0 +1,16 @@
+# Data
+data/
+
+# Node.js
+node_modules/
+
+# React
+build/
+dist/
+*.env
+
+# VSCode
+.vscode/
+
+# Miscellaneous
+.DS_Store
